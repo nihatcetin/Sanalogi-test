@@ -1,0 +1,43 @@
+﻿@model ProductViewModel
+
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-right">
+            <select class="form-select " aria-label="Default select example">
+                <option selected>Sırala</option>
+                <option value="1">a-z</option>
+                <option value="2">z-a</option>
+            </select>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        @await Component.InvokeAsync("Categories")
+    </div>
+    <div class="col-md-9">
+        @if (Model.Products.Count == 0)
+        {
+            @await Html.PartialAsync("_noproduct")
+        }
+        else
+        {
+            <div class="row">
+                @foreach (var prd in Model.Products)
+                {
+                    <div class="col-md-4">
+                        @await Html.PartialAsync("_product", prd)
+                    </div>
+
+                }
+            </div>
+        }
+
+    </div>
+</div>
+

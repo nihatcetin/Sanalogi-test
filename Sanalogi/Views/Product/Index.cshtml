@@ -1,0 +1,49 @@
+﻿@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
+
+
+@model IPagedList<Product>
+
+    <div class="row my-2">
+        <div class="col-md-12">
+            <div class="text-right">
+                <select class="form-select " aria-label="Default select example">
+                    <option selected>Akıllı Sırala</option>
+                    <option asp-controller="product" action="Sıralama" value="1">a-z</option>
+                    <option asp-controller="product" action="Sıralama" value="2">z-a</option>
+                </select>
+            </div>
+
+        </div>
+    </div>
+<div class="row">
+    <div class="col-md-3">
+        @await Component.InvokeAsync("Categories")
+    </div>
+    <div class="col-md-9">
+
+        <table class="table table-bordered">
+            <tr>
+                <th>Ürün Id</th>
+                <th>Ürün Adı</th>
+                <th>Ürün Fiyatı</th>
+            </tr>
+            @foreach (var prd in Model)
+            {
+                <tr>
+                    <td>@prd.ProducyId</td>
+                    <td>@prd.Name</td>
+                    <td>@prd.Price</td>
+                </tr>
+            }
+
+        </table>
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+   {
+
+       LiElementClasses = new string[] { "page-item" },
+       PageClasses = new string[] { "page-link" }
+   })
+    </div>
+</div>
