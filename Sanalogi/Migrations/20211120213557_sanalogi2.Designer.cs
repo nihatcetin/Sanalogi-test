@@ -9,8 +9,8 @@ using Sanalogi.Models;
 namespace Sanalogi.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20211119202224_sanalogi")]
-    partial class sanalogi
+    [Migration("20211120213557_sanalogi2")]
+    partial class sanalogi2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

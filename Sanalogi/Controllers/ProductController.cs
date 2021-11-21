@@ -12,41 +12,42 @@ namespace Sanalogi.Controllers
     public class ProductController : Controller
     {
         Context dbContext = new Context();
-        public IActionResult Index(string p, int page = 1)
+        public IActionResult Index(int page = 1)
         {
-            var products = dbContext.Products.ToList().ToPagedList(page, 5);
+            var products = dbContext.Products.ToList().ToPagedList(page, 10);
 
             return View(products);
         }
-        public IActionResult Arama(string p)
+        public IActionResult Search(string p)
         {
             var products = dbContext.Products.ToList();
 
             if (!string.IsNullOrEmpty(p))
             {
-                products = products.Where(i => i.Name.Contains(p)).ToList();
+                products = products.Where(i => i.Name.ToLower().Contains(p.ToLower())).ToList();
 
-                return View(products);
+                //return View(products);
             }
 
             return View(products);
         }
-        public IActionResult Sıralama(int value)
+
+
+        public IActionResult Sorting(int value)
         {
+
             var products = dbContext.Products.ToList();
 
-            if (value ==1)
+
+            if (value == 1)
             {
-                var prdAsc = products.OrderBy(p => p.Name).ToList();
-                return View(prdAsc);
+                products = products.OrderBy(p => p.Name).ToList();
             }
-            else
+            else if (value == 2)
             {
-                var prdDesc = products.OrderByDescending(p => p.Name).ToList();
-                return View(prdDesc);
+                products = products.OrderByDescending(p => p.Name).ToList();
             }
 
-            
 
             return View(products);
         }
@@ -65,7 +66,7 @@ namespace Sanalogi.Controllers
 
 
 
-            var prdViewModel = new ProductViewModel() //ViewModel üzerinden view'e gönderil yapılıyor.
+            var prdViewModel = new ProductViewModel() //ViewModel üzerinden view'e gönderim yapılıyor.
             {
 
                 Products = prd
@@ -84,21 +85,6 @@ namespace Sanalogi.Controllers
             return View(prd); //view' gönderdik.
         }
 
-        #region
 
-        /*
-        public IActionResult Listeleme()
-        {
-            return View();
-        }
-
-      
-
-        public IActionResult Filtreleme()
-        {
-            return View();
-        }
-        */
-        #endregion
     }
 }

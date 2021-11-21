@@ -5,18 +5,29 @@
 
 @model IPagedList<Product>
 
-    <div class="row my-2">
-        <div class="col-md-12">
-            <div class="text-right">
-                <select class="form-select " aria-label="Default select example">
-                    <option selected>Akıllı Sırala</option>
-                    <option asp-controller="product" action="Sıralama" value="1">a-z</option>
-                    <option asp-controller="product" action="Sıralama" value="2">z-a</option>
-                </select>
-            </div>
 
+
+<div class="row my-2">
+    <div class="col-md-12">
+        <div class="w-25">
+            @await Html.PartialAsync("_search")
         </div>
+        
     </div>
+</div>
+
+<div class="row my-2">
+    <div class="col-md-12">
+        <div class="text-right">
+            <select class="form-select form-control w-25" aria-label="Default select example">
+                <option selected>Akıllı Sırala</option>
+                <option asp-controller="product" action="Sıralama" value="1">a-z</option>
+                <option asp-controller="product" action="Sıralama" value="2">z-a</option>
+            </select>
+        </div>
+
+    </div>
+</div>
 <div class="row">
     <div class="col-md-3">
         @await Component.InvokeAsync("Categories")

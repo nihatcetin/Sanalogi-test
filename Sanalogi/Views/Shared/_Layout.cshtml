@@ -7,9 +7,12 @@
 </head>
 <body>
 
+
     @await Html.PartialAsync("_navbar")
 
-    @await Html.PartialAsync("_header")
+   
+
+    @RenderSection("header",false)
 
     <main>
         <div class="container">

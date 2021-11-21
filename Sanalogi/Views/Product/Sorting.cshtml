@@ -8,11 +8,23 @@
 <div class="row my-2">
     <div class="col-md-12">
         <div class="text-right">
-            <select class="form-select " aria-label="Default select example">
-                <option selected>Akıllı Sırala</option>
-                <option asp-controller="product" action="Sıralama"   value="1">a-z</option>
-                <option asp-controller="product" action="Sıralama" value="2">z-a</option>
+
+            @*<form action="product/sıralama" method="get">
+            <select name="value" class="form-select " aria-label="Default select example">
+                <option value="0" selected>Akıllı Sırala</option>
+                <option value="1">a-z</option>
+                <option value="2">z-a</option>
             </select>
+        </form>*@
+            <form action="product/sorting" method="post">
+                <select name="value" class="form-select " aria-label="Default select example">
+                    <option value="0" selected>Akıllı Sırala</option>
+                    <option value="1">a-z</option>
+                    <option value="2">z-a</option>
+                </select>
+                @*<input type="submit" value="Sırala">*@
+            </form>
+
         </div>
 
     </div>
@@ -39,6 +51,6 @@
             }
 
         </table>
-   
+
     </div>
 </div>

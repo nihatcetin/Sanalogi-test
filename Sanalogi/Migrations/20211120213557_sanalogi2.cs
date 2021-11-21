@@ -2,7 +2,7 @@
 
 namespace Sanalogi.Migrations
 {
-    public partial class sanalogi : Migration
+    public partial class sanalogi2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
